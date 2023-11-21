@@ -40,7 +40,7 @@ def thread_download(download_urls):
     for thread in threads:
         thread.join()
 
-    print(f"Multiprocessor downloaded {len(download_urls)} in {time.time()-start_time:.2f} seconds")
+    print(f"Downloaded threads {len(download_urls)} in {time.time()-start_time:.2f} seconds")
 
 
 def process_download(download_urls):
@@ -53,7 +53,7 @@ def process_download(download_urls):
             process.start()
         for process in processes:
             process.join()
-    print(f"Downloaded {len(download_urls)} in {time.time() - start_time:.2f} seconds")
+    print(f"Downloaded process {len(download_urls)} in {time.time() - start_time:.2f} seconds")
 
 
 async def async_download(url):
@@ -72,7 +72,7 @@ async def main(download_urls):
         task = asyncio.ensure_future(async_download(url))
         tasks.append(task)
     await asyncio.gather(*tasks)
-    print(f"Downloaded {len(download_urls)} in {time.time() - start_time:.2f} seconds")
+    print(f"Downloaded asynchronous {len(download_urls)} in {time.time() - start_time:.2f} seconds")
 
 
 def divide_list_to_chunks(list_, n):
